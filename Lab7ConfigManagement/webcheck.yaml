@@ -1,0 +1,15 @@
+---
+- name: "Ensure Apache/HTTPD is up to date and running"
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: "Update Apache/HTTPD"
+      package:
+        name: "{{ 'apache2' if ansible_distribution == 'Debian' else 'httpd' }}"
+        state: latest
+
+    - name: "Start and enable the service"
+      service:
+        name: "{{ 'apache2' if ansible_distribution == 'Debian' else 'httpd' }}"
+        state: started
+        enabled: yes

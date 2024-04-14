@@ -1,0 +1,39 @@
+#!/usr/bin/python3
+
+import subprocess
+
+admins = ["vabh4134", "mscott", "dschrute"]
+trio = ["kkapoor", "pbeesly", "abernard"]
+accountants = ["amartin", "kmalone", "omartinez"]
+others = ["jhalpert", "tflenderson", "cbratton", "dphilbin", "mpalmer", "plapin", "shudson"]
+
+users = admins + trio + accountants + others
+
+host_ip = {
+    "machinea": ["100.64.9.1", admins],
+    "machineb": ["100.64.9.2", admins],
+    "machinec": ["100.64.9.3", admins + trio],
+    "machined": ["100.64.9.4", admins + trio],
+    "machinef": ["100.64.9.6", admins + accountants]
+}
+
+
+def test_access(password="theoffice"):
+    for key, value in host_ip.items():
+        print("\n")
+        print(f"Machine {key}")
+        for user in users:
+            try:
+                subprocess.check_call(['sshpass', '-p', password, 'ssh', '-q', value[0], '-l', user, 'exit'])
+                if user in value[1]:
+                    print(f"1 {user} can log in")
+                else:
+                    print(f"0 {user} should not be able log in")
+            except subprocess.CalledProcessError:
+                if user not in value[1]:
+                    print(f"1 {user} cannot log in")
+                else:
+                    print(f"0 {user} should be able log in")
+
+
+test_access()

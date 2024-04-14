@@ -1,0 +1,177 @@
+---
+- name: 'Create Dunder Mifflin users and groups'
+  hosts: all
+  vars:
+	 dmgroups:
+		- name: managers
+		  gid: 3016
+
+		- name: sales
+		  gid: 3017
+
+		- name: accounting
+		  gid: 3018
+
+	 dmusers:
+		- name: mscott
+		  uid: 3000
+		  group: mscott
+		  home: /home/mscott
+		  shell: /bin/bash
+		  comment: Michael Scott
+		  password: $6$vIkwcIW2dYG3tked$.q7j2bhgmGLbh0SWPqX2ujfBFI8ys79en8hIN.PwBnTkjv8WIIpP7xode2yQi1X5KiD2Mo01af3RvKR/6fQwH.
+		  groups: managers
+
+		- name: dschrute
+		  uid: 3001
+		  group: dschrute
+		  home: /home/dschrute
+		  shell: /bin/bash
+		  comment: Dwight Schrute
+		  password: $6$3eWW0L/KysotlNXf$0WvNnnHE3IjyX3kmXLb46hTjGCFh8JObxOFA4FZdV1hTcy2j2ciDwaCJmLFf1ZuuiomXzypsHIzwiNmqQW1iC1
+		  groups: managers,schrutefarmsusers
+
+		- name: jhalpert
+		  uid: 3002
+		  group: jhalpert
+		  home: /home/jhalpert
+		  shell: /bin/bash
+		  comment: Jim Halpert
+		  password: $6$JfGiASIx9jFTrVFv$OpKBiUCIh8G.IcihoWLqEBycGAIkCgCqEnycdZpRVj1/MpjrtuW4E/YyOXmOCwtcWVMxn1vLA97oiCtf0PtXg0
+		  groups: managers
+
+		- name: tflenderson
+		  uid: 3003
+		  group: tflenderson
+		  home: /home/tflenderson
+		  shell: /bin/bash
+		  comment: Toby Flenderson
+		  password: $6$3GLcUko5inlMYzMz$lVU9/BTbDxJPi7172.RgZ7xfR8m/xoxxT4mi43khI80nAYZ4hGEKLvPTUYNyFoqh4Qj4ydFF3ygQVJ6P/GMrc.
+
+
+		- name: cbratton
+		  uid: 3004
+		  group: cbratton
+		  home: /home/cbratton
+		  shell: /bin/bash
+		  comment: Creed Bratton
+		  password: $6$WmP2r1gylb1TzKkY$uHqKQCYh3Fb0V2as3bmqadLR5Y7hHj1L5wnw35gWkjIVbsIpHzOGouWPSKm9KsLBg2j0pkh7hCwBUqbM4pnEq.
+
+
+		- name: dphilbin
+		  uid: 3005
+		  group: dphilbin
+		  home: /home/dphilbin
+		  shell: /bin/bash
+		  comment: Darryl Philbin
+		  password: $6$yqXTkUJ78OaYjvhn$TA//x6MHslmU0ticRCEmKAUNXnxboJlwZl0sjHdkbH1YbGgF/NaxBa7E3HQ2VYGShIY9GLkxHCVIhGLfxibwR/
+
+
+		- name: amartin
+		  uid: 3006
+		  group: amartin
+		  home: /home/amartin
+		  shell: /bin/bash
+		  comment: Angela Martin
+		  password: $6$D8Y6GRkX6XonweZ1$nZcws1F0bT9hmm6JuN2Zy5ymANhBJd.OVgYNDv9rSWJ/10y7ZqJsam8k9qkoEjyeEUBbDhuIyfXigk1t7LZXR/
+		  groups: accounting
+
+		- name: kmalone
+		  uid: 3007
+		  group: kmalone
+		  home: /home/kmalone
+		  shell: /bin/bash
+		  comment: Kevin Malone
+		  password: $6$n73adx4Va0kNTGmk$23mRQ47FRmjSEdwDwwDggXDdUimSy6R7RkhmRRPw7gmGsptNR8WGhPExgHWThvtX.HlEtXbj0.OztvF1PqIZl1
+		  groups: accounting
+
+		- name: omartinez
+		  uid: 3008
+		  group: omartinez
+		  home: /home/omartinez
+		  shell: /bin/bash
+		  comment: Oscar Martinez
+		  password: $6$VY3hgVQRQoGCY0Xm$zfF.1.VGlfIAhT8DVg0LaPE4EksQSiC921yS4YpEqimkDo.6dSiDnkvBaNYKncwdborBDhZ1poqQLVPrsmTc50
+		  groups: accounting
+
+		- name: mpalmer
+		  uid: 3009
+		  group: mpalmer
+		  home: /home/mpalmer
+		  shell: /bin/bash
+		  comment: Meredith Palmer
+		  password: $6$jc2.OE/FRLB1pPpQ$MqTwEzGul53sgRISVeE69V96RThzex9k1heUVECXhJf1sNBCaiqCxyrizG3p4yxGBqKfssv3MFZnsjTf1KaSt/
+
+
+		- name: kkapoor
+		  uid: 3010
+		  group: kkapoor
+		  home: /home/kkapoor
+		  shell: /bin/bash
+		  comment: Kelly Kapoor
+		  password: $6$/uyw3xjpBMWMHH7v$pZxZw0j0CBaqiKObKtoYlewEWIb.rFZrygxdg56Z7QrNVpzFPQp6TiJ8Hcztoagh32JVr8lIdW0ivNfNS6UOq1
+		  groups: dundermifflinusers
+
+		- name: pbeesly
+		  uid: 3011
+		  group: pbeesly
+		  home: /home/pbeesly
+		  shell: /bin/bash
+		  comment: Pam Beesly
+		  password: $6$csGeEvudmHBX6O3D$wgkxn1rdzfTqkyEsEJykOXD4dI4Dr8e3r0YBiwM/vqJLu.qkudmHP48Qe.YEpgvW905IddWiFarOLh975jZ4u.
+		  groups: dundermifflinusers
+
+		- name: abernard
+		  uid: 3012
+		  group: abernard
+		  home: /home/abernard
+		  shell: /bin/bash
+		  comment: Andy Bernard
+		  password: $6$37EKz3UdfpYrcm7v$EO1Zqtkt.Ca7pnybUWXVgfvXCleHKVVjosNWgHSwWQyTqRO4RyYWljvKShY0GPTKeQDEDrlxZnU8q5i7hF7wd.
+		  groups: sales,dundermifflinusers
+
+		- name: plapin
+		  uid: 3013
+		  group: plapin
+		  home: /home/plapin
+		  shell: /bin/bash
+		  comment: Phyllis Lapin
+		  password: $6$aDM4hpY8q2EcT1pG$MP6GYK58S6xYlth/lkft3j2w3m8junKyhNOantYCGk7Br/PW/kRqjkYvOPrnAsgteJ4zCttc8MKl/1CkSTRq4.
+		  groups: sales
+
+		- name: shudson
+		  uid: 3014
+		  group: shudson
+		  home: /home/shudson
+		  shell: /bin/bash
+		  comment: Stanley Hudson
+		  password: $6$B2ENqDomlFYmTC.9$luqGJbFGHj6L8lK47zKpQgqgKsJ5XZenuBRnmDQCteEgkv5PW9Apc6kQbseQECh9edIbtxFhY2rPGUVAe41gF/
+		  groups: sales
+
+		- name: vabh4134
+		  uid: 3015
+		  group: vabh4134
+		  home: /home/vabh4134
+		  shell: /bin/bash
+		  comment: Varun Bhaskara
+		  password: $6$ESXnpgSlE746rRu.$NOGsHkWMhXSworXsXoPaV8PP/76d3eZ8L8MxOLNxMWtmi2YE/eRsD5G8v5STAlEBp5INvtpo1oT2vh28uSHto1
+
+  tasks:
+	 - name: Create Dunder Mifflin Groups
+	   group:
+		    name: '{{ item.name }}'
+		    gid: '{{ item.gid }}'
+	   loop: '{{ dmgroups }}'
+
+	 - name: Create Dunder Mifflin Users
+	   user:
+		    name: '{{ item.name }}'
+		    uid: '{{ item.uid }}'
+		    group: '{{ item.group }}'
+		    home: '{{ item.home }}'
+		    shell: '{{ item.shell }}'
+		    comment: '{{ item.comment }}'
+		    password: '{{ item.password }}'
+		    groups: '{{ item.groups }}'
+	   loop: '{{ dmusers }}'
+

@@ -1,0 +1,13 @@
+# Ensure to give others read permission on /etc/profile.d/umask.sh in the remote node to make this work
+---
+- name: "Copy umask settings across machines"
+  hosts: saclass
+  become: yes
+  tasks:
+    - name: "Copy umask across machines"
+      copy:
+        src: /etc/profile.d/umask.sh
+        dest: /etc/profile.d/umask.sh
+        owner: root
+        group: root
+        mode: '0644'
